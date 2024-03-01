@@ -24,8 +24,6 @@ public class MainApp {
       Car car3 = new Car("BMW",7);
       Car car4 = new Car("Lada",600);
 
-
-
       userService.saveUserWithCar(user1, car1);
 
       userService.saveUserWithCar(user2, car2);

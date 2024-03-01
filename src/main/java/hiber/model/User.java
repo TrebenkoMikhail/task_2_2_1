@@ -1,7 +1,5 @@
 package hiber.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 
 @Entity
@@ -9,7 +7,7 @@ import javax.persistence.*;
 public class User {
 
    @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @GeneratedValue
    private Long id;
 
    @Column(name = "name")
@@ -20,6 +18,7 @@ public class User {
 
    @Column(name = "email")
    private String email;
+
    public User() {}
 
    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
