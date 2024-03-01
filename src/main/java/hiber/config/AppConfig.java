@@ -12,7 +12,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
 import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
@@ -41,16 +40,14 @@ public class AppConfig {
    public LocalSessionFactoryBean getSessionFactory() {
       LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
       factoryBean.setDataSource(getDataSource());
-      factoryBean.setHibernateProperties(getHibernateProperties());
-      factoryBean.setAnnotatedClasses(User.class, Car.class);
-      return factoryBean;
-   }
-   private Properties getHibernateProperties() {
+
       Properties props=new Properties();
       props.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
       props.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-      props.put("hibernate.dialect", env.getProperty("hibernate.dialect"));
-      return props;
+
+      factoryBean.setHibernateProperties(props);
+      factoryBean.setAnnotatedClasses(User.class, Car.class);
+      return factoryBean;
    }
 
    @Bean
